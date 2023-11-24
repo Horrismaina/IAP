@@ -1,0 +1,67 @@
+<!--  GROUP MEMBERS
+    Mark Horris Maina-SCT211-0704/2022
+    George Githigi Ngugi SCT211-0460/2022
+    Sajjad Abdirahim Gedow SCT211-0065/2022
+    Emmanuel Yator SCT211-0622/2022
+    Abdimajid Dakane Muktar SCT211-0028/2022     -->
+
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+     <title>To-Do List</title>
+    </head>
+    <body>
+     <form id="todoForm">
+        <input type="text" id="newTask" placeholder="Enter the new task">
+        <button type="submit" id="clickme">Submit</button>
+     </form>
+     <ul id="taskList"></ul>
+     <script>
+    
+        // This stores submit button and input task field in variables
+        var submit = document.getElementById('clickme');
+        var newTask = document.getElementById('newTask');
+    
+        // This disables submit button by default
+        document.getElementById('clickme').disabled = true;
+    
+    
+    
+        // This adds an event listener for input to be typed into the input field
+        newTask.addEventListener('input', function() {
+          if (newTask.value.trim() === '') {
+            submit.disabled = true;
+          } else {
+            submit.disabled = false;
+          }
+        });
+    
+        // This adds event listener for submission of form
+        document.getElementById('todoForm').addEventListener('submit', function(event) {
+            // This prevents the default submission of the form
+          event.preventDefault();
+           
+    
+          // This gets the task the user has just submitted
+          var task = newTask.value.trim();
+    
+          // This creates a list item for the new task
+          var listItem = document.createElement('li');
+          listItem.textContent = task;
+    
+          // This adds the task to our unordered list
+          document.getElementById('taskList').appendChild(listItem);
+    
+          // This clears our input field
+          newTask.value = '';
+    
+          // This disables the submit button again
+          submit.disabled = true;
+    
+          return false;
+        });
+     </script>
+    </body>
+    </html>
